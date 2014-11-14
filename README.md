@@ -4,7 +4,7 @@ thoughtpad-plugin-bundler
 [![build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 
-A thoughtpad plugin that responds to CSS post-compilation events. CSS files will be minified for use in the browser.
+A thoughtpad plugin that responds to pre output events. All script and stylesheets will be bundled into a set that can be specified for each page.
 
 ## Usage
 
@@ -15,22 +15,20 @@ var man = require('thoughtpad-plugin-manager'),
     bundler = require('thoughtpad-plugin-bundler');
 
 var thoughtpad = man.registerPlugins([bundler]);
-thoughtpad.subscribe("css-bundle-complete", function (data) {
-    console.log("your bundle file contents here"); 
+thoughtpad.subscribe("javascript-preoutput-complete", function (data) {
+    console.log("your bundled file content object"); 
 });
-thoughtpad.notify("css-bundle-request", { files: [/* your array of files */] });
-thoughtpad.subscribe("js-bundle-complete", function (data) {
-    console.log("your bundle file contents here"); 
-});
-thoughtpad.notify("js-bundle-request", { files: [/* your array of files */] });
+thoughtpad.notify("javascript-preoutput-request", { contents: { a: 'js code', b: 'more js code' }, data: { fromString: true } });
 ```
+
+The bundler will bundle files according to the `config` object held within the `thoughtpad` object made by the plugin manager. See the tests for examples.
 
 In the `config.js` file in a particular site you should add the following objects to let the bundler know how to bundle the files:
 
 ```JavaScript
 
     /* The scripts are an example. All that is needed is the jsBundle and cssBundle object */
-    jsBundles: {
+    scriptCollections: {
         bundle1: [
             'modernizr.js',
             'jquery.js',
@@ -48,7 +46,7 @@ In the `config.js` file in a particular site you should add the following object
             'analytics-push.js'
         ]
     },
-    cssBundles: {
+    cssCollections: {
         bundle1: [
             'normalise.css',
             'main.css.styl',
