@@ -18,19 +18,19 @@ compilecss = function *(obj) {
         result = {};
 
     // Loop through each bundle of stylesheets
-    for (collection in _thoughtpad.config.cssCollections) {
+    for (collection in _thoughtpad.config.cssbundle) {
         i = 0;
-        len = _thoughtpad.config.cssCollections[collection].length;
+        len = _thoughtpad.config.cssbundle[collection].length;
         currentCollection = [];
 
         // Grab all the compiled contents minify them all together
         for (i; i < len; i++) {            
-            currentCollection.push(obj.contents[_thoughtpad.config.cssCollections[collection][i]]);            
+            currentCollection.push(obj.contents[_thoughtpad.config.cssbundle[collection][i]]);            
         }
         result[collection] = uglifycss.processString(currentCollection.join("\n"), obj.data);
         
         // Replace the config css object with the new bundle name
-        _thoughtpad.config.cssCollections[collection] = [collection];
+        _thoughtpad.config.cssbundle[collection] = [collection];
     }
 
     yield _thoughtpad.notify("css-preoutput-complete", result);
@@ -46,19 +46,19 @@ compilejs = function *(obj) {
         result = {};
 
     // Loop through each bundle of scripts
-    for (collection in _thoughtpad.config.scriptCollections) {
+    for (collection in _thoughtpad.config.jsbundle) {
         i = 0;
-        len = _thoughtpad.config.scriptCollections[collection].length;
+        len = _thoughtpad.config.jsbundle[collection].length;
         currentCollection = [];
 
         // Grab all the compiled contents minify them all together
         for (i; i < len; i++) {            
-            currentCollection.push(obj.contents[_thoughtpad.config.scriptCollections[collection][i]]);            
+            currentCollection.push(obj.contents[_thoughtpad.config.jsbundle[collection][i]]);            
         }
         result[collection] = uglify.minify(currentCollection, obj.data).code;
 
-        // Replace the config script object with the new bundle name
-        _thoughtpad.config.scriptCollections[collection] = [collection];
+        // Replace the config js object with the new bundle name
+        _thoughtpad.config.jsbundle[collection] = [collection];
     }
 
     yield _thoughtpad.notify("javascript-preoutput-complete", result);

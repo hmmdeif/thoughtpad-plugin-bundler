@@ -28,7 +28,7 @@ In the `config.js` file in a particular site you should add the following object
 ```JavaScript
 
     /* The scripts are an example. All that is needed is the jsBundle and cssBundle object */
-    scriptCollections: {
+    jsbundle: {
         bundle1: [
             'modernizr.js',
             'jquery.js',
@@ -46,7 +46,7 @@ In the `config.js` file in a particular site you should add the following object
             'analytics-push.js'
         ]
     },
-    cssCollections: {
+    cssbundle: {
         bundle1: [
             'normalise.css',
             'main.css.styl',

@@ -9,7 +9,7 @@ describe("bundler plugin", function () {
     it("should register correctly to events", function (done) {
         thoughtpad = man.registerPlugins([app]);
         thoughtpad.config = {
-            cssCollections: {
+            cssbundle: {
                 one: ['a', 'b'],
                 two: ['c', 'd', 'e']
             }
@@ -52,7 +52,7 @@ describe("bundler plugin", function () {
     it("should minify multiple js objects from string", function (done) {
         thoughtpad = man.registerPlugins([app]);
         thoughtpad.config = {
-            scriptCollections: {
+            jsbundle: {
                 one: ['a', 'b'],
                 two: ['c', 'd', 'e']
             }
@@ -71,7 +71,7 @@ describe("bundler plugin", function () {
     it("should minify multiple css objects from string", function (done) {
         thoughtpad = man.registerPlugins([app]);
         thoughtpad.config = {
-            cssCollections: {
+            cssbundle: {
                 one: ['a', 'b'],
                 two: ['c', 'd', 'e']
             }
