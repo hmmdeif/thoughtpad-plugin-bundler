@@ -59,7 +59,7 @@ describe("bundler plugin", function () {
         };
 
         thoughtpad.subscribe("javascript-preoutput-complete", function *(contents) {
-            contents.should.eql({ one: 'var a=3,b=2,c=3,d=2;', two: 'var c=3,d=2,c=3,d=2,f=3,g=2;'});
+            contents.bundles.should.eql({ one: 'var a=3,b=2,c=3,d=2;', two: 'var c=3,d=2,c=3,d=2,f=3,g=2;'});
         });
 
         co(function *() {
@@ -78,7 +78,7 @@ describe("bundler plugin", function () {
         };
 
         thoughtpad.subscribe("css-preoutput-complete", function *(contents) {
-            contents.should.eql({ one: '.class1{width:100%}.class1{width:100%}', two: '.class1{width:100%}.class1{width:100%}.class1{width:100%}'});
+            contents.bundles.should.eql({ one: '.class1{width:100%}.class1{width:100%}', two: '.class1{width:100%}.class1{width:100%}.class1{width:100%}'});
         });
 
         co(function *() {
