@@ -77,6 +77,9 @@ describe("bundler plugin", function () {
             cssbundle: {
                 one: ['a', 'b'],
                 two: ['c', 'd', 'e']
+            },
+            eventData: {
+                'css-preoutput': {expandVars: false}
             }
         };
 
