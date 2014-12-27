@@ -55,6 +55,9 @@ describe("bundler plugin", function () {
             jsbundle: {
                 one: ['a', 'b'],
                 two: ['c', 'd', 'e']
+            },
+            eventData: {
+                'javascript-preout' : { fromString: true }
             }
         };
 
@@ -63,7 +66,7 @@ describe("bundler plugin", function () {
         });
 
         co(function *() {
-            yield thoughtpad.notify("javascript-preoutput-request", { contents: { a: "var a = 3,\n\tb = 2;", b: "var c = 3,\n\td = 2;", c: "var c = 3,\n\td = 2;", d: "var c = 3,\n\td = 2;", e: "var f = 3,\n\tg = 2;"}, data: { fromString: true } });
+            yield thoughtpad.notify("javascript-preoutput-request", { contents: { a: "var a = 3,\n\tb = 2;", b: "var c = 3,\n\td = 2;", c: "var c = 3,\n\td = 2;", d: "var c = 3,\n\td = 2;", e: "var f = 3,\n\tg = 2;"} });
             done();
         })();
     });

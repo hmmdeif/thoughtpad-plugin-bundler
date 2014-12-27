@@ -13,7 +13,13 @@ compilecss = function *(obj) {
         i,
         len,
         currentCollection,
-        result = {};
+        result = {},
+        data;
+
+    // The user can override this using the eventData config variable
+    if (obj.thoughtpad.config && obj.thoughtpad.config.eventData && obj.thoughtpad.config.eventData['css-preoutput']) {
+        data = obj.thoughtpad.config.eventData['css-preoutput'];
+    }
 
     // Loop through each bundle of stylesheets
     for (collection in obj.thoughtpad.config.cssbundle) {
@@ -25,7 +31,7 @@ compilecss = function *(obj) {
         for (i; i < len; i++) {            
             currentCollection.push(obj.contents[obj.thoughtpad.config.cssbundle[collection][i]]);            
         }
-        result[collection] = uglifycss.processString(currentCollection.join("\n"), obj.data);
+        result[collection] = uglifycss.processString(currentCollection.join("\n"), data);
         
         // Replace the config css object with the new bundle name
         obj.thoughtpad.config.cssbundle[collection] = [collection];
@@ -41,7 +47,13 @@ compilejs = function *(obj) {
         i,
         len,
         currentCollection,
-        result = {};
+        result = {},
+        data = { fromString: true };
+
+    // The user can override this using the eventData config variable
+    if (obj.thoughtpad.config && obj.thoughtpad.config.eventData && obj.thoughtpad.config.eventData['javascript-preoutput']) {
+        data = obj.thoughtpad.config.eventData['javascript-preoutput'];
+    }
 
     // Loop through each bundle of scripts
     for (collection in obj.thoughtpad.config.jsbundle) {
@@ -53,7 +65,7 @@ compilejs = function *(obj) {
         for (i; i < len; i++) {            
             currentCollection.push(obj.contents[obj.thoughtpad.config.jsbundle[collection][i]]);            
         }
-        result[collection] = uglify.minify(currentCollection, obj.data).code;
+        result[collection] = uglify.minify(currentCollection, data).code;
 
         // Replace the config js object with the new bundle name
         obj.thoughtpad.config.jsbundle[collection] = [collection];
