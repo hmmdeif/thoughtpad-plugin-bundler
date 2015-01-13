@@ -8,7 +8,7 @@ A thoughtpad plugin that responds to pre output events. All script and styleshee
 
 ## Usage
 
-The plugin should be loaded using the [thoughtpad-plugin-manager](https://github.com/hmmdeif/thoughtpad-plugin-manager). Once this has been done then the plugin will respond to events. To use standalone:
+The plugin should be loaded using the [thoughtpad-plugin-manager](https://github.com/thoughtpad/thoughtpad-plugin-manager). Once this has been done then the plugin will respond to events. To use standalone:
 
 ```JavaScript
 var man = require('thoughtpad-plugin-manager'),
@@ -77,7 +77,7 @@ Alternatively if you are in a *NIX environment `npm test` will run the tests plu
 
 The code is available under the [MIT license](http://deif.mit-license.org/).
 
-[travis-image]: https://img.shields.io/travis/hmmdeif/thoughtpad-plugin-bundler/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/hmmdeif/thoughtpad-plugin-bundler
-[coveralls-image]: https://img.shields.io/coveralls/hmmdeif/thoughtpad-plugin-bundler/master.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/hmmdeif/thoughtpad-plugin-bundler?branch=master
+[travis-image]: https://img.shields.io/travis/thoughtpad/thoughtpad-plugin-bundler/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/thoughtpad/thoughtpad-plugin-bundler
+[coveralls-image]: https://img.shields.io/coveralls/thoughtpad/thoughtpad-plugin-bundler/master.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/thoughtpad/thoughtpad-plugin-bundler?branch=master
