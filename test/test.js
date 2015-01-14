@@ -31,20 +31,24 @@ describe("bundler plugin", function () {
     });
 
     it("should ignore requests with no content", function (done) {
+        var res = true;
+
         thoughtpad = man.registerPlugins([app]);
 
         thoughtpad.subscribe("javascript-preoutput-complete", function *() {
-            true.should.be.false;
+            res = false;
         });
 
         thoughtpad.subscribe("css-preoutput-complete", function *() {
-            true.should.be.false;
+            res = false;
         });
 
         co(function *() {
-            yield thoughtpad.notify("javascript-preoutput-request", { contents: "" });
-            yield thoughtpad.notify("css-preoutput-request", { contents: [""] });
-            done()
+            yield thoughtpad.notify("javascript-preoutput-request", {});
+            res.should.be.true;
+            yield thoughtpad.notify("css-preoutput-request", {});
+            res.should.be.true;
+            done();
         })();
     });
 
