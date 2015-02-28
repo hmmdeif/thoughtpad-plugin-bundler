@@ -27,7 +27,7 @@ describe("bundler plugin", function () {
             yield thoughtpad.notify("javascript-preoutput-request", { contents: [""], data: { fromString: true } });
             yield thoughtpad.notify("css-preoutput-request", { contents: [""] });
             done();
-        })();
+        }).catch(done);
     });
 
     it("should ignore requests with no content", function (done) {
@@ -49,7 +49,7 @@ describe("bundler plugin", function () {
             yield thoughtpad.notify("css-preoutput-request", {});
             res.should.be.true;
             done();
-        })();
+        }).catch(done);
     });
 
 
@@ -72,7 +72,7 @@ describe("bundler plugin", function () {
         co(function *() {
             yield thoughtpad.notify("javascript-preoutput-request", { contents: { a: "var a = 3,\n\tb = 2;", b: "var c = 3,\n\td = 2;", c: "var c = 3,\n\td = 2;", d: "var c = 3,\n\td = 2;", e: "var f = 3,\n\tg = 2;"} });
             done();
-        })();
+        }).catch(done);
     });
 
     it("should minify multiple css objects from string", function (done) {
@@ -94,7 +94,7 @@ describe("bundler plugin", function () {
         co(function *() {
             yield thoughtpad.notify("css-preoutput-request", { contents: { a: ".class1 {\n\twidth: 100%;\n}", b: ".class1 {\n\twidth: 100%;\n}", c: ".class1 {\n\twidth: 100%;\n}", d: ".class1 {\n\twidth: 100%;\n}", e: ".class1 {\n\twidth: 100%;\n}"} });
             done();
-        })();
+        }).catch(done);
     });
 });
 
